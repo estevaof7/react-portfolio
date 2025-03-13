@@ -1,37 +1,44 @@
-import globals from 'globals'
-import pluginJs from '@eslint/js'
-import tseslint from 'typescript-eslint'
-import pluginReact from 'eslint-plugin-react'
 import { FlatCompat } from '@eslint/eslintrc'
-import eslintConfigPrettier from 'eslint-config-prettier'
+import js from '@eslint/js'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+  allConfig: js.configs.all
 })
 
-/** @type {import('eslint').Linter.Config[]} */
 const eslintConfig = [
-  { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
-  { languageOptions: { globals: globals.browser } },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
-  ...compat.config({
-    extends: ['next/core-web-vitals']
-  }),
-
+  ...compat.extends(
+    'next/core-web-vitals',
+    'next/typescript',
+    'plugin:prettier/recommended'
+  ),
   {
     rules: {
-      'react/react-in-jsx-scope': 'off',
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
-      'react/prop-types': 'off',
-      '@typescript-eslint/explicit-module-boundary-types': 'off',
-      '@typescript-eslint/no-non-null-assertion': 'off'
-    }
-  },
-
-  eslintConfigPrettier
+      'no-console': [
+        'error',
+        {
+          allow: ['warn', 'error']
+        }
+      ],
+      quotes: ['error', 'single'],
+      'linebreak-style': ['error', 'unix']
+    },
+    ignores: [
+      'node_modules/',
+      '.next/',
+      'dist/',
+      '.vscode/',
+      '.eslintcache',
+      'package-lock.json',
+      'pnpm-lock.yaml',
+      'coverage/'
+    ]
+  }
 ]
 
 export default eslintConfig

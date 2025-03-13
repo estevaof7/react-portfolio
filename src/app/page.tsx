@@ -1,9 +1,19 @@
-'use client'
+import { LanguageProvider } from '@/view-model/language';
+import Footer from './components/footer';
+import NavBar from './components/nav-bar';
+import Session1 from './components/session1';
+import Session2 from './components/session2';
 
-import { usePathname } from "next/navigation"
+export default function Home({ children }: { children: React.ReactNode }) {
+  // PASSAR PARA GITHUB E, DEPOIS, PARA VERCEL E VERIFICAR SE LÍNGUA FUNCIONOU
+  //
 
-export default function Home() {
-  const nomeHref = usePathname();
-
-  return <div>Hello world! {nomeHref}</div>
+  return (
+    <LanguageProvider>
+      <NavBar />
+      <Session1 />
+      <Session2 />
+      <Footer />
+    </LanguageProvider>
+  );
 }
