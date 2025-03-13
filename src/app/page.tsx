@@ -4,7 +4,7 @@ import NavBar from './components/nav-bar';
 import Session1 from './components/session1';
 import Session2 from './components/session2';
 
-export default function Home({ children }: { children: React.ReactNode }) {
+export default function Home() {
   // PASSAR PARA GITHUB E, DEPOIS, PARA VERCEL E VERIFICAR SE LÍNGUA FUNCIONOU
   //
 

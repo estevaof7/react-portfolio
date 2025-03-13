@@ -12,6 +12,7 @@
     "test:ci": "jest --runInBand"
   },
   "dependencies": {
+    "eslint-plugin-prettier": "^5.2.3",
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
