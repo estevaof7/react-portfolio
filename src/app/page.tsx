@@ -5,8 +5,7 @@ import Session1 from './components/session1';
 import Session2 from './components/session2';
 
 export default function Home() {
-  // PASSAR PARA GITHUB E, DEPOIS, PARA VERCEL E VERIFICAR SE LÍNGUA FUNCIONOU
-  //
+  // CORRIGI OS ERROS COM ESLINT E PRETTIER ... TENTAR DE NOVO PASSAR PARA VERCEL ... DEPOIS ... VERIFICAR SE LÍNGUA FUNCIONOU E CONTINUAR O PROJETO
 
   return (
     <LanguageProvider>
